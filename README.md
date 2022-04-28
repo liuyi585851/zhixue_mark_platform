@@ -27,7 +27,7 @@ static -> 静态文件
 ### 启动前注意事项
 请先前往exam/settings.py设置SECRET_KEY和mysql连接信息
 启动前，请先运行
-'''
+```bash
 python manage.py makemigrations
 python manage.py migrate
-'''
+```
