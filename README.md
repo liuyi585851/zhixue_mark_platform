@@ -31,3 +31,5 @@ static -> 静态文件
 python manage.py makemigrations
 python manage.py migrate
 ```
+
+之后，修改`examweb/zhixue.py`，第14行，将其改为教师的账号和密码。
