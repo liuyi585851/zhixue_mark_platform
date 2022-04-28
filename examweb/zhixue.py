@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from openpyxl import Workbook
 import time
 
-tch_session = get_session("zxt2434473", "2019zhongkao")
+tch_session = get_session("###教师账号###", "###教师密码###")
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36 Edg/92.0.902.55"
