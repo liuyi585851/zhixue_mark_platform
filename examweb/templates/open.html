@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}成绩查询系统{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toastr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrapValidator.min.css' %}">
+    <script src="{% static 'js/toastr.min.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <script type="text/javascript">
+        window.onload=function(){
+            document.getElementById('open').className='active';
+        };
+    </script>
+{% if request.session.is_login %}
+{% if is_developer %}
+     <div>你是开发者</div>
+{% else %}
+    <div class="alert alert-danger text-center">您尚未成为开发者</div>
+    <div class="text-center"><strong>现在注册成为开发者，获取丰富的接口权限、说明文档</strong></div>
+    <br>
+    <div style="text-align:center"><button id="btn_sub" type="button" class="btn btn-primary">开发者注册</button></div>
+    <script>
+        $("#btn_sub").click(function(){
+            window.location.href="/register";
+        })
+    </script>
+{% endif %}
+{% else %}
+<script>
+    window.location.href="/index";
+</script>
+{% endif %}
+{% endblock %}

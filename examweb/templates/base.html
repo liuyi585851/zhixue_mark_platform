@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{% block title %}base{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style type="text/css">
+      html,body{margin:0;padding: 0;}
+      /* 动态为footer添加类fixed-bottom */
+      .fixed-bottom {position: fixed;bottom: 0;width:100%;}
+    </style>
+
+    <!-- <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script> -->
+    <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+    <script type="text/javascript">
+      $(function(){
+          function footerPosition(){
+              $("footer").removeClass("fixed-bottom");
+              var contentHeight = document.body.scrollHeight,//网页正文全文高度
+                  winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+              if(!(contentHeight > winHeight)){
+                  //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+                  $("footer").addClass("fixed-bottom");
+              } else {
+                  $("footer").removeClass("fixed-bottom");
+              }
+          }
+          footerPosition();
+          $(window).resize(footerPosition);
+      });
+    </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-nav" aria-expanded="false">
+            <span class="sr-only">切换导航条</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">成绩查询系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="my-nav">
+          <ul class="nav navbar-nav">
+            <li id="index"><a href="/index/">主页</a></li>
+            <li id="about"><a href="/about/">关于</a></li>
+            <li id="question"><a href="/question/">常见问题</a></li>
+            <li id="open"><a href="/open/">开放平台</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if request.session.is_login %}
+              <li><a href="#">当前在线:{{ request.session.name }}({{ request.session.class }})</a></li>
+              {% if request.session.is_admin %}
+              <li><a href="/admin/">管理</a></li>
+              {% endif %}
+              <li><a href="/logout/">登出</a></li>
+            {% else %}
+              <li><a href="/login/">登录</a></li>
+            {% endif %}
+            <!-- 右侧导航栏目 -->
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    {% block content %}{% endblock %}
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="{% static 'js/jquery-3.5.1.js' %}"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+  </body>
+  <br>
+  <div class="footer text-center">Developed by liuyi  Copyright&copy;2021</div>
+</html>

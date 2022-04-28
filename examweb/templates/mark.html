@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}成绩查询系统{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<script>
+    function func(){
+        $.ajax({
+            url:'/keygen/',
+            type:'POST',
+            headers:{"X-CSRFToken":'{{ csrf_token }}'},
+            data:{'examname':'{{ exam }}'},
+            dataType:'json',
+            success:function(e){
+                location.href = '/update/?key='+e.key
+            }
+        })
+    }
+</script>
+{% if is_cache %}
+<div class="alert alert-info text-center">您当前查看的数据缓存于 <strong>{{ catime }}</strong>  如果数据已更新，请<a href="javascript:func()"><u>点此</u></a>刷新 <a href='/about/'><u>为什么要缓存数据?</u></a></div>
+{% endif %}
+<div class="text-center"><strong>{{ name }}</strong> 同学在 <strong>{{ exam }}</strong> 中的成绩如下:</div>
+<br>
+<div class="container">                    
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>科目</th>
+				<th>成绩</th>
+                <th>班级排名</th>
+                <th>年级排名</th>
+                {% if is_cross %}
+                    <th>联考排名</th>
+                {% endif %}
+			</tr>
+		</thead>
+		<tbody>
+            {% for score in mark %}
+            {% if not score %}
+            {% else %}
+			<tr>
+				<td>{{ score.subject.name }}</td>
+                <td>{{ score.score }}</td>
+                <td>{{ score.class_extraRank.rank }}</td>
+                <td>{{ score.grade_extraRank.rank }}</td>
+                {% if score.exam_extraRank.rank %}
+                    <td>{{ score.exam_extraRank.rank }}</td>
+                {% endif %}
+			</tr>
+            {% endif %}
+            {% endfor %}
+		</tbody>
+	</table>
+    <br>
+    <div class="text-center"><strong>本成绩仅供参考用，请以智学网查询结果为准</strong></div>
+    <br>
+    <div class="text-center"><a href="/index">返回</a></div>
+</div>
+
+{% endblock %}

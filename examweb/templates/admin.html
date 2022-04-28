@@ -1,0 +1,28 @@
+{% extends 'abase.html' %}
+{% load static %}
+{% block title %}后台管理中心{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+    {% if request.session.is_login %}
+        {% if request.session.is_admin %}
+
+        {% else %}
+            <div class="text-center">很抱歉，您没有管理员权限。如有疑问，请查看<a href='/about/'>关于</a>页面获取更多信息</div>
+            <br>
+            <div class="text-center"><a href='/index/'>返回首页</a></div>
+        {% endif %}
+    {% else %}
+        <div>你没有登录</div>
+    {% endif %}
+        
+  </body>
+</html>
+{% endblock %}

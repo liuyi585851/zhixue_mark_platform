@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}成绩查询系统{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+<script type="text/javascript">
+window.onload=function(){
+    document.getElementById('about').className='active';
+};
+</script>
+<head>
+    <style type="text/css">
+        .about {text-align:center;line-height:30px;}
+    </style>
+</head>
+<div class="about"><font size="3">本系统由liuyi独立开发</font></div>
+<div class="about"><font size="3">Github:<a href="https://github.com/liuyi585851">@liuyi585851</a></font></div>
+<div class="about"><font size="3">智学网api:<a href="https://github.com/anwenhu/zhixuewang">@anwenhu/zhixuewang</a></font></div>
+<div class="about"><font size="3">如果您有任何意见或建议，欢迎联系<a href="http://wpa.qq.com/msgrd?v=3&uin=2223764620&site=qq&menu=yes">QQ:2223764620</a></font></div>
+{% endblock %}
