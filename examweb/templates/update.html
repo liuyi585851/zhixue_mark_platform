@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}成绩查询系统{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if is_ok %}
+<div>已成功刷新考试 <strong>{{ examname }}</strong> 的缓存数据，请重新查询</div>
+{% else %}
+<div>失败</div>
+{% endif %}
+{% endblock %}

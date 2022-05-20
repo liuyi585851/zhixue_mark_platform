@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}成绩查询系统{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+<script type="text/javascript">
+    window.onload=function(){
+        document.getElementById('question').className='active';
+    };
+</script>
+<div><h3>为什么要缓存数据?</h3></div>
+<div>为保证用户访问速度，减轻服务器处理压力，本站采用缓存技术，对查询过的考试数据进行缓存。因此，若考试数据已更新，
+    请您及时在查询页面申请刷新数据，以获取最新数据
+</div>
+<br>
+<h3>申请更新缓存时为何提示错误?</h3>
+<div>为减轻处理压力，对于同一考试，5分钟内只能被刷新一次。如已刷新，请您耐心等待5分钟后再试</div>
+<br>
+<h3>查询结果是否准确?为什么与我的实际排名有区别?</h3>
+<div>网站显示的成绩与智学网完全一致，但由于排名并未与智学网同步，很可能存在1-5名误差，请理解</div>
+<br>
+<h3>成绩和排名是否赋分?</h3>
+<div>本站目前尚未支持科目赋分，本功能将很快推出</div>
+{% endblock %}
