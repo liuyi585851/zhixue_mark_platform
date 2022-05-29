@@ -1,3 +1,9 @@
+'''
+views.py - 后端主程序
+作者/anthor:liuyi585851
+类型/type:后端主程序-django文件-视图文件
+描述/description:处理传入的各种后端请求
+'''
 from email import message
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render

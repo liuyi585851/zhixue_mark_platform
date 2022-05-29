@@ -1,3 +1,12 @@
+'''
+zhixue.py - 智学网API文件
+作者/anthor:anwenhu
+类型/type:依赖文件-接口和api文件-api文件
+描述/description:与智学网相关操作的接口文件 如查分、排名、导出文档等
+使用方式/usage:
+import zhixue --> 引入文件
+zhixueScoreApi = ZhixueScoreApi() --> 实例化对象
+'''
 import asyncio
 import os
 from pathlib import Path
@@ -337,11 +346,3 @@ class ZhixueScoreApi:
     def sav_to_xlsx(self, scores, path=''):
         savHelper = SavHelper(self.subjects, self.cur_exam, scores, self.classes)
         savHelper.sav_to_xlsx(path)
-
-
-
-
-# zhixueScoreApi = ZhixueScoreApi("账号", "密码")
-# print(zhixueScoreApi.get_exams())
-# scores = zhixueScoreApi.get_scores(zhixueScoreApi.get_exams()[0])
-# zhixueScoreApi.sav_to_xlsx(scores, 'D:/')
